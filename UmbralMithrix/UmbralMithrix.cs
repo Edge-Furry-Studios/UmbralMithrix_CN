@@ -502,12 +502,12 @@ namespace UmbralMithrix
 
     private void CreateDoppelItem()
     {
-      LanguageAPI.Add("UMBRALMITHRIX_UMBRAL_ITEM", "Origin Bonus");
-      LanguageAPI.Add("UMBRALMITHRIX_UMBRAL_PICKUP", "For Mithrix ONLY >:(");
-      LanguageAPI.Add("UMBRALMITHRIX_UMBRAL_DESC", "Funny umbra skin");
+      LanguageAPI.Add("UMBRALMITHRIX_UMBRAL_ITEM", "起源");
+      LanguageAPI.Add("UMBRALMITHRIX_UMBRAL_PICKUP", "仅米斯历克斯>:(");
+      LanguageAPI.Add("UMBRALMITHRIX_UMBRAL_DESC", "有趣的本影皮肤");
 
-      LanguageAPI.Add("UMBRALMITHRIX_UMBRAL_SUBTITLENAMETOKEN", "The Collective");
-      LanguageAPI.Add("UMBRALMITHRIX_UMBRAL_MODIFIER", "Umbral");
+      LanguageAPI.Add("UMBRALMITHRIX_UMBRAL_SUBTITLENAMETOKEN", "聚合体");
+      LanguageAPI.Add("UMBRALMITHRIX_UMBRAL_MODIFIER", "本影");
 
       UmbralItem = ScriptableObject.CreateInstance<ItemDef>();
       UmbralItem.name = "UmbralMithrixUmbralItem";
@@ -528,7 +528,7 @@ namespace UmbralMithrix
         }
         if (self.inventory && self.inventory.GetItemCount(UmbralItem) > 0 && (self.name == "ElectricWormBody(Clone)" || self.name == "MagmaWormBody(Clone)"))
         {
-          return self.subtitleNameToken + " " + Language.GetString("UMBRALMITHRIX_UMBRAL_SUBTITLENAMETOKEN");
+          return self.subtitleNameToken + Language.GetString("UMBRALMITHRIX_UMBRAL_SUBTITLENAMETOKEN");
         }
         return orig(self);
       };
@@ -539,7 +539,7 @@ namespace UmbralMithrix
         CharacterBody cb = bodyObject.GetComponent<CharacterBody>();
         if (cb && cb.inventory && cb.inventory.GetItemCount(UmbralItem) > 0)
         {
-          toReturn = Language.GetString("UMBRALMITHRIX_UMBRAL_MODIFIER") + " " + toReturn; ;
+          toReturn = Language.GetString("UMBRALMITHRIX_UMBRAL_MODIFIER") + toReturn; ;
         }
         return toReturn;
       };
@@ -598,7 +598,7 @@ namespace UmbralMithrix
     {
       // 1090.1f, -283.1f, 1138.6f
       GameObject obelisk = Instantiate(Obelisk, new Vector3(1090.1f, -283.1f, 1138.6f), Quaternion.identity);
-      obelisk.GetComponent<PurchaseInteraction>().NetworkcontextToken = "Summon The Umbral King?";
+      obelisk.GetComponent<PurchaseInteraction>().NetworkcontextToken = "挑衅米斯历克斯？";
       obelisk.name = "UmbralObelisk";
       obelisk.transform.eulerAngles = new Vector3(0.0f, 66f, 0.0f);
       NetworkServer.Spawn(obelisk);
@@ -611,7 +611,7 @@ namespace UmbralMithrix
         self.purchaseInteraction = self.GetComponent<PurchaseInteraction>();
         shrineActivated = true;
         self.purchaseInteraction.Networkavailable = false;
-        Chat.SendBroadcastChat(new Chat.SimpleChatMessage() { baseToken = $"<color=#8826dd>The Umbral King awaits...</color>" });
+        Chat.SendBroadcastChat(new Chat.SimpleChatMessage() { baseToken = $"<color=#8826dd>米斯历克斯正等待着...</color>" });
         self.GetComponent<ChildLocator>().FindChild(EntityStates.Interactables.MSObelisk.ReadyToEndGame.chargeupChildString).gameObject.SetActive(true);
         int num = (int)Util.PlaySound(EntityStates.Interactables.MSObelisk.ReadyToEndGame.chargeupSoundString, self.gameObject);
       }
@@ -781,8 +781,8 @@ namespace UmbralMithrix
           if (PhaseCounter.instance.phase == 4 && (body.name == "ElectricWormBody(Clone)" || body.name == "MagmaWormBody(Clone)") && ModConfig.doppelPhase4.Value)
           {
             self.inventory.GiveItemString(UmbralItem.name);
-            body.baseNameToken = "Wurms";
-            body.subtitleNameToken = "Tendrils Of";
+            body.baseNameToken = "蠕虫";
+            body.subtitleNameToken = "超载";
 
             if (body.name == "MagmaWormBody(Clone)")
             {
